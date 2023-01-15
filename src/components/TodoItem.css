@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400&family=Salsa&display=swap');
+
+.todoItem{
+    margin: 2rem 0;
+    font-family: 'Mulish', sans-serif;
+}
+.todoItem h1 {
+    background: #5787ee;
+    padding: 1rem ;
+    width: 100%;
+}
+.todoItem h1:checked{
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+}
+.buttons{
+    display: flex;
+}
+.buttons button{
+    color: #f4f4f4;
+    background: #5787ee;
+    padding: 0.5rem 1rem;
+    border: none;
+    transition: background .5s ease;
+}
+.buttons button:hover{
+    cursor: pointer;
+    background: #375088;
+}

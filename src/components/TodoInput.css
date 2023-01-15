@@ -1,0 +1,23 @@
+.input{
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #5787ee;
+    margin: 3rem 0 .5rem 0;
+    font-size: 2rem;
+    transition: padding .5s ease;
+}
+.input:focus{
+    outline: none;
+    padding: .5rem;
+}
+.btn{
+    color: #f4f4f4;
+    background: #5787ee;
+    padding: 0.5rem 1rem;
+    border: none;
+    transition: background .5s ease;
+}
+.btn:hover{
+    cursor: pointer;
+    background: #375088;
+}
