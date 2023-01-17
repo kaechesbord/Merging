@@ -28,6 +28,7 @@ app.get("/todos", (req, res) => {
   res.send(todos);
 });
 app.post("/todos", (req, res) => {
+  const id = (Math.random() + 1).toString(36).substring(7);
   /*if (Object.keys(req.body).length === 0) {
     return res.status(400).send("Please enter required data");
   }
@@ -41,7 +42,7 @@ app.post("/todos", (req, res) => {
   if (todo) {
     return res.status(400).send("ID already in use!");
   }*/
-  todos.push(req.body);
+  todos.push({id,isCompleted:false,title:req.body.title});
   res.send(todos);
 });
 app.patch("/todos/:id", (req, res) => {
@@ -63,9 +64,9 @@ app.patch("/todos/:id", (req, res) => {
 app.delete('/todos/:id', (req, res) => {
   const { id } = req.params;
   const todo = todos.find((todo) => todo.id === id)
-  /*if (!todo) {
+  if (!todo) {
     return res.status(400).send("Task doesn't exist!");
-  }*/
+  }
   todos = todos.filter((todo) => todo.id !== id)
   res.send(todos)
 })
