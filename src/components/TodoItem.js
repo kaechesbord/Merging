@@ -1,19 +1,18 @@
 import React from "react";
 import "./TodoItem.css";
-import axios from "axios";
 
-const TodoItem = ({ task }) => {
-
-  const deleteTodo = async () => {
-    const res = await axios.delete("http://localhost:3000/todos")
-    console.log(res.data);
+const TodoItem = ({ task, deleteTodo }) => {
+  
+  const deleteTodoHandler = () => {
+    deleteTodo(task.id)
   }
+
   return (
     <div className="todoItem">
       <div className="buttons">
         <h1>{task.title}</h1>
         <button>EDIT</button>
-        <button onClick={deleteTodo}>DELETE</button>
+        <button onClick = {deleteTodoHandler}>DELETE</button>
       </div>
     </div>
   );
