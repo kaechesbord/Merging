@@ -1,11 +1,10 @@
 import React from 'react'
 import TodoItem from './TodoItem'
 
-const Todo = ({tasks}) => {
-    console.log(tasks)
+const Todo = ({tasks, deleteTodo}) => {
   return (
     tasks.map(task => {
-        return <TodoItem task = {task} key = {task.id}/>
+        return <TodoItem task = {task} key = {task.id} deleteTodo={deleteTodo}/>
     })
   )
 }
