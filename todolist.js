@@ -49,6 +49,7 @@ app.patch("/todos/:id", (req, res) => {
   const { id } = req.params;
   const filteredTodos = todos.filter((todo) => todo.id !== id)
   const todo = todos.find((todo) => todo.id === id)
+  console.log(todo)
 
   if (todo) {
     todo.isCompleted = req.body.isCompleted;
@@ -69,6 +70,16 @@ app.delete('/todos/:id', (req, res) => {
   }
   todos = todos.filter((todo) => todo.id !== id)
   res.send(todos)
+})
+app.put('/todos/:id', (req,res) => {
+  const prevState = todos.forEach(/**/)
+  const todo = todos.find((todo) => todo.id === id)
+  if (todo) {
+    todo.isCompleted = !prevState;
+  }
+  else{
+    return res.status(400).send("Samting vent roung!");
+  }
 })
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
