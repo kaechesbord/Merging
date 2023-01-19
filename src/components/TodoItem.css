@@ -9,22 +9,29 @@
     padding: 1rem ;
     width: 100%;
 }
-.todoItem h1:checked{
-    background: #888;
-    color: #fff;
+.checked h1{
+    margin-top: 2rem;
+    height: 100px !important;
+    font-family: 'Mulish', sans-serif;
+    background: #616877;
     text-decoration: line-through;
+    padding: 1rem ;
+    width: 100%;
 }
 .buttons{
     display: flex;
 }
-.buttons button{
+.button{
     color: #f4f4f4;
-    background: #5787ee;
+    margin-top: -2rem;
+    background: thistle;
     padding: 0.5rem 1rem;
     border: none;
     transition: background .5s ease;
+    width: 100%;
+    height: 80px !important;
 }
 .buttons button:hover{
     cursor: pointer;
-    background: #375088;
+    background: rgb(139, 108, 139)
 }
