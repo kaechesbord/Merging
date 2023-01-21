@@ -47,19 +47,19 @@ app.post("/todos", (req, res) => {
 });
 app.patch("/todos/:id", (req, res) => {
   const { id } = req.params;
-  const filteredTodos = todos.filter((todo) => todo.id !== id)
+  const changes = req.body
   const todo = todos.find((todo) => todo.id === id)
 
   if (todo) {
-    todo.isCompleted = req.body.isCompleted;
-    filteredTodos.push(todo)
-    todos = filteredTodos.sort((a, b) => a.id - b.id)
-
-  } else {
+    Object.assign(todo, changes)
+    res.status(200).json(todo)
+    console.log(changes)
+  }else if(1 === true ) {
+    res.send(todos)
+  } 
+  else {
     return res.status(400).send("Task doesn't exist!");
-  }
-
-  res.send(todos)
+  } 
 });
 app.delete('/todos/:id', (req, res) => {
   const { id } = req.params;
@@ -69,6 +69,17 @@ app.delete('/todos/:id', (req, res) => {
   }
   todos = todos.filter((todo) => todo.id !== id)
   res.send(todos)
+})
+app.put('/todos/:id', (req,res) => {
+  const { id } = req.params;
+  const prevState = todos.forEach(/**/)
+  const todo = todos.find((todo) => todo.id === id)
+  if (todo) {
+    todo.isCompleted = !prevState;
+  }
+  else{
+    return res.status(400).send("Samting vent roung!");
+  }
 })
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
