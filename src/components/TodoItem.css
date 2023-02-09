@@ -5,7 +5,7 @@
     font-family: 'Mulish', sans-serif;
 }
 .todoItem h1 {
-    background: #5787ee;
+    background: lightskyblue;
     padding: 1rem ;
     width: 100%;
 }
@@ -13,7 +13,7 @@
     margin-top: 2rem;
     height: 100px !important;
     font-family: 'Mulish', sans-serif;
-    background: #616877;
+    background: lightsalmon;
     text-decoration: line-through;
     padding: 1rem ;
     width: 100%;

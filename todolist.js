@@ -1,9 +1,9 @@
 const express = require("express");
-const cors = require("cors")
+const cors = require("cors");
 const app = express();
 const port = 3000;
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 let todos = [
@@ -42,45 +42,36 @@ app.post("/todos", (req, res) => {
   if (todo) {
     return res.status(400).send("ID already in use!");
   }*/
-  todos.push({id,isCompleted:false,title:req.body.title});
+  todos.push({ id, isCompleted: false, title: req.body.title });
   res.send(todos);
 });
 app.patch("/todos/:id", (req, res) => {
   const { id } = req.params;
-  const filteredTodos = todos.filter((todo) => todo.id !== id)
-  const todo = todos.find((todo) => todo.id === id)
-  console.log(todo)
-
-  if (todo) {
-    todo.isCompleted = req.body.isCompleted;
-    filteredTodos.push(todo)
-    todos = filteredTodos.sort((a, b) => a.id - b.id)
-
-  } else {
-    return res.status(400).send("Task doesn't exist!");
+  function change(id) {
+    const changed = todos.find((change) => change.id === id);
+    changed.title = req.body.title;
+    res.send(changed);
   }
-
-  res.send(todos)
+  change(id);
 });
-app.delete('/todos/:id', (req, res) => {
+app.delete("/todos/:id", (req, res) => {
   const { id } = req.params;
-  const todo = todos.find((todo) => todo.id === id)
+  const todo = todos.find((todo) => todo.id === id);
   if (!todo) {
     return res.status(400).send("Task doesn't exist!");
   }
-  todos = todos.filter((todo) => todo.id !== id)
-  res.send(todos)
-})
-app.put('/todos/:id', (req,res) => {
-  const prevState = todos.forEach(/**/)
-  const todo = todos.find((todo) => todo.id === id)
+  todos = todos.filter((todo) => todo.id !== id);
+  res.send(todos);
+});
+app.put("/todos/:id", (req, res) => {
+  const prevState = todos.forEach(/**/);
+  const todo = todos.find((todo) => todo.id === id);
   if (todo) {
     todo.isCompleted = !prevState;
-  }
-  else{
+  } else {
     return res.status(400).send("Samting vent roung!");
   }
-})
+});
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

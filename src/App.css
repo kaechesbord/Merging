@@ -10,4 +10,6 @@
     max-width: 1000px;
     margin: auto;
 }
-
+::selection{
+    background-color: lightcoral;
+}

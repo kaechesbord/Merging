@@ -12,7 +12,6 @@ const TodoInput = ({createTodo}) => {
   return (
     <form onSubmit={handleSubmit}>
         <input type="text" ref={input} required className='input'/>
-        <input type="submit" className='btn'/>
       </form>
   )
 }

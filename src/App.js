@@ -13,15 +13,14 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [show, setShow] = useState(false);
   const [newTitle, setNewTitle] = useState("");
-  const [editId, setEditId] = useState("");
- 
-
+  const [editId, setEditId] = useState();
+  
   const handleClose = () => setShow(false);
-
+  
   const handleChange = (event) => {
     setNewTitle(event.target.value);
   };
-
+  
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get("http://localhost:3000/todos");
@@ -43,7 +42,7 @@ function App() {
         tasks.filter((task) => {
           return task.id !== id;
         })
-      );
+        );
     } catch {
       alert("NOT GOOD");
     }
@@ -69,14 +68,16 @@ function App() {
         <TodoInput createTodo={createTodo} />
         {tasks ? (
           <Todo
-            tasks={tasks}
-            deleteTodo={deleteTodo}
-            editTodo={editTodo}
-            openModal={openModal}
+          tasks={tasks}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+          openModal={openModal}
+          newTitle={newTitle}
+          editId={editId}
           />
-        ) : (
-          <Preloader />
-        )}
+          ) : (
+            <Preloader />
+            )}
       </div>
       <>
         <Modal show={show} onHide={handleClose}>
@@ -103,7 +104,7 @@ function App() {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={editTodo}>
+            <Button variant="primary" onClick={handleClose}>
               Save Changes
             </Button>
           </Modal.Footer>
