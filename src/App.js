@@ -48,19 +48,22 @@ function App() {
     }
   };
   const editTodo = async () => {
-    await axios.patch(`http://localhost:3000/todos/${editId}`);
-    if (newTitle) {
-      tasks.filter((task) => {
-        return task.id === editId;
-      });
-      setTasks({...tasks, title: newTitle})
-      console.log(tasks)
+    const data = await axios.patch(`http://localhost:3000/todos/${editId}`, {
+      title:newTitle
+    });
+    console.log(data)
+    if (data) {
+      setTasks(data.data)
     }
   };
   const openModal = (id) => {
     setEditId(id);
     setShow(true);
   };
+  function help() {
+    handleClose()
+    editTodo()
+  }
   return (
     <div className="todoapp stack-large">
       <div className="container">
@@ -80,7 +83,7 @@ function App() {
             )}
       </div>
       <>
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} onClick={editTodo}>
           <Modal.Header closeButton>
             <Modal.Title>New Title For This Note </Modal.Title>
           </Modal.Header>
@@ -104,7 +107,7 @@ function App() {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" onClick={help}>
               Save Changes
             </Button>
           </Modal.Footer>

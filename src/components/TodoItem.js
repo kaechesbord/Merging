@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./TodoItem.css";
 
-const TodoItem = ({ task, deleteTodo, openModal, newTitle, tasks,editId }) => {
+const TodoItem = ({ task, deleteTodo, openModal}) => {
   const [isCompleted, setIsCompleted] = useState(false);
-  
+
   const deleteTodoHandler = () => {
     deleteTodo(task.id);
   };
-  
+
   const openModalHandler = () => {
     openModal(task.id);
   };
@@ -25,21 +25,14 @@ const TodoItem = ({ task, deleteTodo, openModal, newTitle, tasks,editId }) => {
       isCompleted: isCompleted,
     });
   };
-  const found = tasks.find((task) => task.id === editId)
-  useEffect(() => {
-    found.title = newTitle
-    console.log(found)
-  },[found])
-   
+
   return (
     <>
       <div
         onClick={handleCompletion}
         className={isCompleted ? "checked h1" : "todoItem"}
       >
-        
-          <h1>{newTitle ? newTitle : task.title}</h1>
-  
+        <h1>{task.title}</h1>
       </div>
       <div className="buttons">
         <button className="button" onClick={openModalHandler}>

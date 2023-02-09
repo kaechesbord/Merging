@@ -47,9 +47,15 @@ app.post("/todos", (req, res) => {
 });
 app.patch("/todos/:id", (req, res) => {
   const { id } = req.params;
+  console.log(req.body.title)
   function change(id) {
-    const changed = todos.find((change) => change.id === id);
-    changed.title = req.body.title;
+    const changed = todos.map((change) => {
+      if (change.id === id) {
+        return {title:req.body.title, id: change.id, isCompleted: change.isCompleted}
+      }
+      return change
+    });
+
     res.send(changed);
   }
   change(id);
